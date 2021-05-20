@@ -5,3 +5,4 @@
 *.tfstate.backup
 .terraform.lock.hcl
 terraform/private_ssh_key
+terraform.tfvars

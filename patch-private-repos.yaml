@@ -1,7 +1,7 @@
 data:
   repositories: |
     - name: argocd-private
-      url: https://github.com/ams0/argocd-private.git
+      url: https://github.com/donhighmsft/argocd-private.git
       passwordSecret:
         name: argocd-repo-credentials
         key: token

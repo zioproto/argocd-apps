@@ -32,7 +32,7 @@ spec:
     targetRevision: HEAD
     directory:
       recurse: true
-    repoURL: https://github.com/ams0/argocd-apps
+    repoURL: https://github.com/donhighmsft/argocd-apps
   syncPolicy:
     automated:
       prune: true
