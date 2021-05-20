@@ -8,9 +8,9 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
-    - hosts:
-        - argocd.ingress.stackmasters.com
-      secretName: argo-tls-secret
+    #- hosts:
+    # - argocd.ingress.stackmasters.com
+    secretName: argo-tls-secret
   rules:
     - http:
         paths:
@@ -18,4 +18,4 @@ spec:
             backend:
               serviceName: argocd-server
               servicePort: http
-      host: argocd.ingress.stackmasters.com
+      #host: argocd.ingress.stackmasters.com

@@ -22,7 +22,7 @@ module "aks" {
   source                         = "Azure/aks/azurerm"
   resource_group_name            = var.resource_group_name
   kubernetes_version             = var.kubernetes_version
-  orchestrator_version           = "1.19.3"
+  orchestrator_version           = var.kubernetes_version
   prefix                         = "sm"
   network_plugin                 = "kubenet"
   public_ssh_key                 = var.public_ssh_key
