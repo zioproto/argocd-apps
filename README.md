@@ -7,7 +7,7 @@ tf init
 tf apply -auto-approve
 ```
 
-The template will install AKS and call the ArgoCD module to install everything that is in this repo under the `/manifests` folder, including `cert-manager` and `ingress-nginx`. To allow for the certificates creation, you need to map the ingress public IP to a real wildcard DNS record in a DNS zone (in Azure):
+The template will install AKS and call the ArgoCD module to install everything that is in this repo under the `/apps` folder, including `cert-manager` and `ingress-nginx`. To allow for the certificates creation, you need to map the ingress public IP to a real wildcard DNS record in a DNS zone (in Azure):
 
 ```console
 INGRESS_IP=`kg svc -n ingress ingress-nginx-controller --output=jsonpath="{.status.loadBalancer.ingress[0]['ip']}"`
@@ -32,7 +32,7 @@ Note that I modify the official template to allow insecure connections (SSL is t
 Create the bootstrap root application (apps-of-apps)
 
 ```console
-kubectl apply -f manifests/root.yaml
+kubectl apply -f apps/root-app.yaml
 ```
 
 To get the ingress work with the Let's Encrypt certificate, you need to map the ingress IP to a DNS zone. If you have one in Azure, you can use this:
@@ -46,8 +46,7 @@ kubectl get secret -n argocd  argocd-initial-admin-secret -o jsonpath="{.data.pa
 and use the `argocd` command line:
 
 ```console
-kubectl port-forward svc/argocd-server 8080:80 --namespace argocd &
-argocd login localhost:8080  --insecure
+kubectl port-forward svc/argocd-server 8080:80 --namespace argocd & argocd login localhost:8080  --insecure
 ```
 
 ToDo
