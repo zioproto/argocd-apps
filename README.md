@@ -3,17 +3,17 @@
 ## Deploy AKS with Terrafom
 
 ```console
-tf init
-tf apply -auto-approve
+terraforn init
+terraforn apply -auto-approve
 ```
 
 The template will install AKS and call the ArgoCD module to install everything that is in this repo under the `/apps` folder, including `cert-manager` and `ingress-nginx`. To allow for the certificates creation, you need to map the ingress public IP to a real wildcard DNS record in a DNS zone (in Azure):
 
 ```console
 INGRESS_IP=`kg svc -n ingress ingress-nginx-controller --output=jsonpath="{.status.loadBalancer.ingress[0]['ip']}"`
-az network dns record-set a delete  -g dns -z stackmasters.com -y -n "*.ingress"
-az network dns record-set a add-record  -n "*.ingress" -g dns -z stackmasters.com --ipv4-address $INGRESS_IP
-az network dns record-set a update  -n "*.ingress" -g dns -z stackmasters.com --set ttl=10
+az network dns record-set a delete  -g dns -z donhighcontainerguy.com -y -n "*.ingress"
+az network dns record-set a add-record  -n "*.ingress" -g dns -z donhighcontainerguy.com --ipv4-address $INGRESS_IP
+az network dns record-set a update  -n "*.ingress" -g dns -z donhighcontainerguy.com --set ttl=10
 ```
 
 If you already have a cluster, you can install the ArgoCD server with:
@@ -51,11 +51,17 @@ kubectl port-forward svc/argocd-server 8080:80 --namespace argocd & argocd login
 
 ToDo
 
+- ingress-nginx [DONE]
+- cert-manager [DONE]
 - blobfuse-csi-driver [DONE]
 - azurefile-csi-driver [DONE]
-- vault {NEED PERSISTENCE with Consul}
-- jenkins Helm chart
-- OPA policies
+- azuredisk-csi-driver [DONE]
+- secrets-store-csi-driver-provider-azure [DONE]
+- falco [DONE]
+- sealed-secrets [DONE]
+- kyverno [DONE]
+- shpod [DONE]
+- capsule [DONE]
 - Prom operator
 - Loki
 

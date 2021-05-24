@@ -1,21 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vault-operator
+  name: azuredisk-csi-driver
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
-    namespace: vault
+    namespace: csi-drivers
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: charts/vault-operator/
-    repoURL: https://github.com/banzaicloud/bank-vaults
+    path: charts/latest/azuredisk-csi-driver
     targetRevision: HEAD
+    repoURL: https://github.com/kubernetes-sigs/azuredisk-csi-driver
   syncPolicy:
     automated:
       prune: true
