@@ -11,9 +11,9 @@ The template will install AKS and call the ArgoCD module to install everything t
 
 ```console
 INGRESS_IP=`kg svc -n ingress ingress-nginx-controller --output=jsonpath="{.status.loadBalancer.ingress[0]['ip']}"`
-az network dns record-set a delete  -g dns -z donhighcontainerguy.com -y -n "*.ingress"
-az network dns record-set a add-record  -n "*.ingress" -g dns -z donhighcontainerguy.com --ipv4-address $INGRESS_IP
-az network dns record-set a update  -n "*.ingress" -g dns -z donhighcontainerguy.com --set ttl=10
+az network dns record-set a delete  -g dns -z donhighthecontainerguy.com -y -n "*.ingress"
+az network dns record-set a add-record  -n "*.ingress" -g dns -z donhighthecontainerguy.com --ipv4-address $INGRESS_IP
+az network dns record-set a update  -n "*.ingress" -g dns -z donhighthecontainerguy.com --set ttl=10
 ```
 
 If you already have a cluster, you can install the ArgoCD server with:
