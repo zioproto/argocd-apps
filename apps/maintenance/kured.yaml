@@ -2,18 +2,18 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kured
-  namespace: argocd
+  namespace: kured
 spec:
   destination:
     namespace: kured
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: charts/kured
+    path: manifests/kured
     targetRevision: HEAD
     directory:
       recurse: true
-    repoURL: https://github.com/weaveworks/kured
+    repoURL: https://github.com/donhighmsft/argocd-apps
   syncPolicy:
     automated:
       prune: true
