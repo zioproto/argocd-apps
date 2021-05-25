@@ -9,11 +9,11 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: charts/kyverno
+    chart: kyverno
     targetRevision: HEAD
     directory:
       recurse: true
-    repoURL: https://github.com/kyverno/kyverno
+    repoURL: https://kyverno.github.io/kyverno/
   syncPolicy:
     automated:
       prune: true
