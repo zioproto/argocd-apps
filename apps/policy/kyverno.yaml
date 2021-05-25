@@ -9,9 +9,11 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: charts/kyverno
-    targetRevision: v1.3.6
-    repoURL: https://github.com/kyverno/kyverno
+    path: manifests/policy
+    targetRevision: HEAD
+    directory:
+      recurse: true
+    repoURL: https://github.com/donhighmsft/argocd-apps
   syncPolicy:
     automated:
       prune: true
