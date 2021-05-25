@@ -11,8 +11,6 @@ spec:
   source:
     path: charts/kyverno
     targetRevision: v1.3.6
-    directory:
-      recurse: true
     repoURL: https://github.com/kyverno/kyverno
   syncPolicy:
     automated:
