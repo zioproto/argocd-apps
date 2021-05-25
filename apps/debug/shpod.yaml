@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: shpod
-  namespace: shpod
+  namespace: argocd
 spec:
   destination:
     namespace: shpod
