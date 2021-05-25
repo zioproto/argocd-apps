@@ -9,11 +9,9 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   source:
+    repoURL: "https://github.com/clastix/capsule"
     path: charts/capsule
     targetRevision: v0.0.5
-    directory:
-      recurse: true
-    repoURL: https://github.com/clastix/capsule
   syncPolicy:
     automated:
       prune: true
