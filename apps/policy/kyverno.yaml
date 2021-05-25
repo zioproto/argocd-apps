@@ -10,7 +10,7 @@ spec:
   project: infra
   source:
     chart: kyverno
-    targetRevision: HEAD
+    targetRevision: 1.3.6
     directory:
       recurse: true
     repoURL: https://kyverno.github.io/kyverno/

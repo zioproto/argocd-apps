@@ -10,7 +10,7 @@ spec:
   project: infra
   source:
     chart: capsule
-    targetRevision: HEAD
+    targetRevision: 0.0.19
     directory:
       recurse: true
     repoURL: https://clastix.github.io/charts
