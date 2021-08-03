@@ -7,10 +7,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
     #cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
-  tls:
-    #- hosts:
-    # - argocd.ingress.stackmasters.com
-    secretName: argo-tls-secret
+  #tls:
+  #- hosts:
+  # - argocd.ingress.stackmasters.com
+  #secretName: argo-tls-secret
   rules:
     - http:
         paths:
