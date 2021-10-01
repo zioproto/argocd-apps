@@ -48,6 +48,7 @@ module "argocd" {
   bootstrap_repo_url     = var.bootstrap_repo_url
   bootstrap_repo_path    = var.bootstrap_repo_path
   bootstrap_repo_branch  = var.bootstrap_repo_branch
+  bootstrap_argo_project = var.bootstrap_argo_project
   host                   = module.aks.host
   client_key             = module.aks.client_key
   client_certificate     = module.aks.client_certificate

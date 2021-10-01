@@ -1,3 +1,5 @@
 server:
+  image:
+    tag:
   extraArgs:
-  - --insecure
+    - --insecure
