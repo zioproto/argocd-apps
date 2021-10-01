@@ -66,3 +66,9 @@ variable "bootstrap_repo_branch" {
   description = "ArgoCD bootstrap repo branch"
   default     = ""
 }
+
+variable "bootstrap_argo_project" {
+  type        = string
+  description = "ArgoCD bootstrap project"
+  default     = ""
+}

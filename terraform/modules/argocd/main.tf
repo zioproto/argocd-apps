@@ -32,7 +32,7 @@ resource "helm_release" "argocd" {
     value = "v2.0.2"
   }
 
-#because I can't pass "- --insecure" directly using set{}
+  #because I can't pass "- --insecure" directly using set{}
   values = [
     file("${path.module}/chart/argocd/values.yaml")
   ]
@@ -62,6 +62,10 @@ resource "helm_release" "rootapp" {
   set {
     name  = "bootstrap.repo_branch"
     value = var.bootstrap_repo_branch
+  }
+  set {
+    name  = "bootstrap.argo_project"
+    value = var.bootstrap_argo_project
   }
 
 }

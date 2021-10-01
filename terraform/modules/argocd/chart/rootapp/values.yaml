@@ -2,3 +2,4 @@ bootstrap:
   repo_url:
   repo_path:
   repo_branch:
+  argo_project:

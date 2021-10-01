@@ -1,19 +1,41 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: { { .Values.bootstrap.argo_project } }
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Infrastructure components
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+    - "*"
+  # Only permit applications to deploy to the guestbook namespace in the same cluster
+  destinations:
+    - namespace: "*"
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root
-  namespace: {{ .Release.Namespace  }}
+  namespace: { { .Release.Namespace } }
 spec:
   destination:
-    namespace: {{ .Release.Namespace  }}
+    namespace: { { .Release.Namespace } }
     server: https://kubernetes.default.svc
-  project: default
+  project: { { .Values.bootstrap.argo_project } }
   source:
-    path: {{ .Values.bootstrap.repo_path }}
-    targetRevision: {{ .Values.bootstrap.repo_branch }}
+    path: { { .Values.bootstrap.repo_path } }
+    targetRevision: { { .Values.bootstrap.repo_branch } }
     directory:
       recurse: true
-    repoURL: {{ .Values.bootstrap.repo_url }}
+    repoURL: { { .Values.bootstrap.repo_url } }
   syncPolicy:
     automated:
       prune: true
