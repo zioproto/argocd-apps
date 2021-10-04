@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: azuredisk-csi-driver
+  name: azurefile-csi-driver
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    #argocd.argoproj.io/sync-wave: "6"
 spec:
   destination:
     namespace: csi-drivers
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: charts/latest/azuredisk-csi-driver
+    path: charts/latest/azurefile-csi-driver
     targetRevision: HEAD
-    repoURL: https://github.com/kubernetes-sigs/azuredisk-csi-driver
+    repoURL: https://github.com/kubernetes-sigs/azurefile-csi-driver
   syncPolicy:
     automated:
       prune: true

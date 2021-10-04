@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: blob-csi-driver
+  name: azuredisk-csi-driver
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "7"
+    #argocd.argoproj.io/sync-wave: "5"
 spec:
   destination:
     namespace: csi-drivers
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: charts/latest/blob-csi-driver
+    path: charts/latest/azuredisk-csi-driver
     targetRevision: HEAD
-    repoURL: https://github.com/kubernetes-sigs/blob-csi-driver
+    repoURL: https://github.com/kubernetes-sigs/azuredisk-csi-driver
   syncPolicy:
     automated:
       prune: true

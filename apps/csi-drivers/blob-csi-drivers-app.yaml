@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: secrets-store-csi-driver-provider-azure
+  name: blob-csi-driver
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "8"
+    #argocd.argoproj.io/sync-wave: "7"
 spec:
   destination:
     namespace: csi-drivers
     server: https://kubernetes.default.svc
   project: infra
   source:
-    chart: csi-secrets-store-provider-azure
-    targetRevision: 0.0.19
-    repoURL: https://raw.githubusercontent.com/Azure/secrets-store-csi-driver-provider-azure/master/charts
+    path: charts/latest/blob-csi-driver
+    targetRevision: HEAD
+    repoURL: https://github.com/kubernetes-sigs/blob-csi-driver
   syncPolicy:
     automated:
       prune: true
