@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: { { .Release.Namespace } }
     server: https://kubernetes.default.svc
-  project: { { .Values.bootstrap.argo_project } }
+  project: infra
   source:
     path: { { .Values.bootstrap.repo_path } }
     targetRevision: { { .Values.bootstrap.repo_branch } }

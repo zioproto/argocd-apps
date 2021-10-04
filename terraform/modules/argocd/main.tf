@@ -29,7 +29,7 @@ resource "helm_release" "argocd" {
 
   set {
     name  = "server.image.tag"
-    value = "v2.0.2"
+    value = "latest"
   }
 
   #because I can't pass "- --insecure" directly using set{}
