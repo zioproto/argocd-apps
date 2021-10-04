@@ -4,7 +4,7 @@ metadata:
   name: ingress
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "-1"
+    #argocd.argoproj.io/sync-wave: "-1"
 spec:
   destination:
     namespace: ingress
@@ -19,7 +19,7 @@ spec:
           value: "3"
     path: charts/ingress-nginx/
     repoURL: https://github.com/kubernetes/ingress-nginx
-    targetRevision: 3.23.0
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
