@@ -2,18 +2,18 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root
-  namespace: { { .Release.Namespace } }
+  namespace: {{ .Release.Namespace }}
 spec:
   destination:
-    namespace: { { .Release.Namespace } }
+    namespace: {{ .Release.Namespace }}
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: { { .Values.bootstrap.repo_path } }
-    targetRevision: { { .Values.bootstrap.repo_branch } }
+    path: {{ .Values.bootstrap.repo_path }}
+    targetRevision: {{ .Values.bootstrap.repo_branch }}
     directory:
       recurse: true
-    repoURL: { { .Values.bootstrap.repo_url } }
+    repoURL: {{ .Values.bootstrap.repo_url }}
   syncPolicy:
     automated:
       prune: true
