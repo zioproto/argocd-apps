@@ -1,5 +1,5 @@
 resource_group_name   = "argocd"
-location              = "westeurope"
+location              = "southcentralus"
 public_ssh_key        = ""
 vnet_address_prefix   = ["172.20.0.0/16"]
 subnet_address_prefix = ["172.20.1.0/24"]
