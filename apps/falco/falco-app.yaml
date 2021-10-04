@@ -1,21 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kured
+  name: falco
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "10"
+    #argocd.argoproj.io/sync-wave: "9"
 spec:
   destination:
-    namespace: kured
+    namespace: falco
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: manifests/kured
+    path: falco
     targetRevision: HEAD
-    directory:
-      recurse: true
-    repoURL: https://github.com/donhighmsft/argocd-apps
+    repoURL: https://github.com/falcosecurity/charts
   syncPolicy:
     automated:
       prune: true
