@@ -4,7 +4,8 @@
 
 ```console
 terraform init
-terraform apply -auto-approve
+cp terraform.tfvarsexample terraform.tfvars
+terraform apply -auto-approve -var-file=terraform.tfvars
 ```
 
 The template will install AKS and call the ArgoCD module to install everything that is in this repo under the `/apps` folder, including `cert-manager` and `ingress-nginx`. To allow for the certificates creation, you need to map the ingress public IP to a real wildcard DNS record in a DNS zone (in Azure):
