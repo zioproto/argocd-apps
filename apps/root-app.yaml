@@ -9,6 +9,9 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   description: Infrastructure components
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
   # Allow manifests to deploy from any Git repos
   sourceRepos:
     - "*"
