@@ -10,8 +10,8 @@ metadata:
 spec:
   description: Infrastructure components
   clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+  - group: "*"
+    kind: "*"
   # Allow manifests to deploy from any Git repos
   sourceRepos:
     - "*"
@@ -32,10 +32,10 @@ spec:
   project: infra
   source:
     path: apps
-    targetRevision: HEAD
+    targetRevision: drop-admissionregistration-v1beta1
     directory:
       recurse: true
-    repoURL: https://github.com/ams0/argocd-apps
+    repoURL: https://github.com/zioproto/argocd-apps
   syncPolicy:
     automated:
       prune: true
