@@ -29314,7 +29314,6 @@ metadata:
 webhooks:
   - admissionReviewVersions:
       - v1
-      - v1beta1
     clientConfig:
       service:
         name: cert-manager-webhook
@@ -29350,7 +29349,6 @@ metadata:
 webhooks:
   - admissionReviewVersions:
       - v1
-      - v1beta1
     clientConfig:
       service:
         name: cert-manager-webhook
