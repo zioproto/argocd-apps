@@ -16,6 +16,15 @@ provider "helm" {
   }
 }
 
+# Create IP for Ingress
+resource "azurerm_public_ip" "argocd" {
+  name                = "argocd"
+  location            = azurerm_resource_group.argocd.location
+  resource_group_name = azurerm_resource_group.argocd.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
+
 resource "helm_release" "argocd" {
 
   depends_on = [var.argocd_depens_on]
@@ -62,6 +71,10 @@ resource "helm_release" "rootapp" {
   set {
     name  = "bootstrap.repo_branch"
     value = var.bootstrap_repo_branch
+  }
+  set {
+    name = "ingress.host"
+    value = "${azurerm_public_ip.argocd.ip_address}.nip.io"
   }
 
 }

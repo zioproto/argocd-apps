@@ -37,6 +37,12 @@ module "aks" {
   role_based_access_control_enabled = true
   rbac_aad                          = false
 
+  storage_profile_enabled = true
+  storage_profile_blob_driver_enabled = true
+  storage_profile_disk_driver_enabled = true
+  storage_profile_file_driver_enabled = true
+  secret_rotation_enabled = true
+
   depends_on = [azurerm_subnet.argocd]
 
 }
