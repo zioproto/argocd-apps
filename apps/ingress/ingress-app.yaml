@@ -15,10 +15,9 @@ spec:
           value: "Deployment"
         - name: controller.replicaCount
           value: "3"
-        - name: controller.containerPort.http
-          value: "8080"
-        - name: controller.containerPort.https
-          value: "8443"
+        - name: controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path"
+          value: "/healthz"
+
     path: charts/ingress-nginx/
     repoURL: https://github.com/kubernetes/ingress-nginx
     targetRevision: HEAD
