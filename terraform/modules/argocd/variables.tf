@@ -47,3 +47,7 @@ variable "argocd_depens_on" {
   description = "argocd_depens_on"
   default     = ""
 }
+
+variable "rg" {
+  description = "Resource Group"
+}

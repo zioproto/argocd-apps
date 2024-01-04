@@ -17,10 +17,14 @@ provider "helm" {
 }
 
 # Create IP for Ingress
+data azurerm_resource_group "argocd" {
+  name = var.rg
+}
+
 resource "azurerm_public_ip" "argocd" {
   name                = "argocd"
-  location            = azurerm_resource_group.argocd.location
-  resource_group_name = azurerm_resource_group.argocd.name
+  location            = data.azurerm_resource_group.argocd.location
+  resource_group_name = data.azurerm_resource_group.argocd.name
   allocation_method   = "Static"
   sku                 = "Standard"
 }
