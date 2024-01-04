@@ -25,7 +25,7 @@ module "aks" {
   kubernetes_version   = var.kubernetes_version
   orchestrator_version = var.kubernetes_version
   prefix               = "sm"
-  network_plugin       = "kubenet"
+  network_plugin       = "azure"
   public_ssh_key       = var.public_ssh_key
   vnet_subnet_id       = azurerm_subnet.argocd.id
 
