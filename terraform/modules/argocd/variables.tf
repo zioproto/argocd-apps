@@ -23,30 +23,7 @@ variable "bootstrap_repo_branch" {
   default     = ""
 }
 
-variable "host" {
-  description = "host"
-  default     = ""
-}
 
-variable "client_certificate" {
-  description = "client_certificate"
-  default     = ""
-}
-
-variable "client_key" {
-  description = "client_key"
-  default     = ""
-}
-
-variable "cluster_ca_certificate" {
-  description = "cluster_ca_certificate"
-  default     = ""
-}
-
-variable "argocd_depens_on" {
-  description = "argocd_depens_on"
-  default     = ""
-}
 
 variable "rg" {
   description = "Resource Group"

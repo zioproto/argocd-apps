@@ -51,15 +51,12 @@ module "argocd" {
 
   source = "./modules/argocd"
 
-  argocd_depens_on = [module.aks.aks_id]
+  depends_on = [ azurerm_resource_group.argocd ]
 
   bootstrap_repo_url     = var.bootstrap_repo_url
   bootstrap_repo_path    = var.bootstrap_repo_path
   bootstrap_repo_branch  = var.bootstrap_repo_branch
-  host                   = module.aks.host
-  client_key             = module.aks.client_key
-  client_certificate     = module.aks.client_certificate
-  cluster_ca_certificate = module.aks.cluster_ca_certificate
+
 
   rg = azurerm_resource_group.argocd.name
 }

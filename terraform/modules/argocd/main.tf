@@ -1,24 +1,7 @@
-provider "kubernetes" {
-  host                   = var.host
-  client_key             = base64decode(var.client_key)
-  client_certificate     = base64decode(var.client_certificate)
-  cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
-
-}
-
-provider "helm" {
-  kubernetes {
-    host                   = var.host
-    client_key             = base64decode(var.client_key)
-    client_certificate     = base64decode(var.client_certificate)
-    cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
-
-  }
-}
-
 # Create IP for Ingress
 data azurerm_resource_group "argocd" {
   name = var.rg
+  depends_on = [  ]
 }
 
 resource "azurerm_public_ip" "argocd" {
@@ -30,9 +13,6 @@ resource "azurerm_public_ip" "argocd" {
 }
 
 resource "helm_release" "argocd" {
-
-  depends_on = [var.argocd_depens_on]
-
 
   name             = "argocd"
   chart            = "argo-cd"
