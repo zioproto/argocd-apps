@@ -1,7 +1,7 @@
 # Create IP for Ingress
-data azurerm_resource_group "argocd" {
-  name = var.rg
-  depends_on = [  ]
+data "azurerm_resource_group" "argocd" {
+  name       = var.rg
+  depends_on = []
 }
 
 resource "azurerm_public_ip" "argocd" {
@@ -10,6 +10,31 @@ resource "azurerm_public_ip" "argocd" {
   resource_group_name = data.azurerm_resource_group.argocd.name
   allocation_method   = "Static"
   sku                 = "Standard"
+}
+
+resource "helm_release" "nginx_ingress_controller" {
+  name             = "ingress-nginx"
+  repository       = "https://kubernetes.github.io/ingress-nginx"
+  chart            = "ingress-nginx"
+  namespace        = "ingress"
+  create_namespace = true
+  timeout          = 600
+
+  set {
+    name  = "controller.service.loadBalancerIP"
+    value = azurerm_public_ip.argocd.ip_address
+  }
+
+  set {
+    name  = "controller.service.annotations.service.\\beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
+    value = "/healthz"
+  }
+
+  set {
+    name  = "controller.nodeSelector.kubernetes\\.io/os"
+    value = "linux"
+  }
+
 }
 
 resource "helm_release" "argocd" {
@@ -25,7 +50,7 @@ resource "helm_release" "argocd" {
     value = "v2.7.15"
   }
 
-#because I can't pass "- --insecure" directly using set{}
+  #because I can't pass "- --insecure" directly using set{}
   values = [
     file("${path.module}/chart/argocd/values.yaml")
   ]
@@ -57,7 +82,7 @@ resource "helm_release" "rootapp" {
     value = var.bootstrap_repo_branch
   }
   set {
-    name = "ingress.host"
+    name  = "ingress.host"
     value = "${azurerm_public_ip.argocd.ip_address}.nip.io"
   }
 
