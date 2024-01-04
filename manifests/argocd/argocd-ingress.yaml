@@ -10,7 +10,7 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - argocd.ingress.stackmasters.com
+        - 52.146.86.239.nip.io
       secretName: argo-tls-secret
   rules:
     - http:
@@ -22,4 +22,4 @@ spec:
                 name: argocd-server
                 port:
                   name: http
-      host: argocd.ingress.stackmasters.com
+      host: 52.146.86.239.nip.io
