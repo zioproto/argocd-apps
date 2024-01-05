@@ -57,5 +57,6 @@ module "argocd" {
   bootstrap_repo_path    = var.bootstrap_repo_path
   bootstrap_repo_branch  = var.bootstrap_repo_branch
 
-  rg = module.aks.node_resource_group
+  dns_name  = "${var.dns_prefix}.${var.location}.cloudapp.azure.com"
+
 }

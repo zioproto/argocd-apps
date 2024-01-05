@@ -1,16 +1,3 @@
-# Create IP for Ingress
-data "azurerm_resource_group" "argocd" {
-  name       = var.rg
-}
-
-resource "azurerm_public_ip" "argocd" {
-  name                = "argocd"
-  location            = data.azurerm_resource_group.argocd.location
-  resource_group_name = data.azurerm_resource_group.argocd.name
-  allocation_method   = "Static"
-  sku                 = "Standard"
-}
-
 resource "helm_release" "nginx_ingress_controller" {
   name             = "ingress-nginx"
   repository       = "https://kubernetes.github.io/ingress-nginx"
@@ -20,13 +7,13 @@ resource "helm_release" "nginx_ingress_controller" {
   timeout          = 600
 
   set {
-    name  = "controller.service.loadBalancerIP"
-    value = azurerm_public_ip.argocd.ip_address
-  }
-
-  set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
     value = "/healthz"
+  }
+
+    set {
+    name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-dns-label-name"
+    value = "${var.dns_name}"
   }
 
   set {
@@ -82,7 +69,7 @@ resource "helm_release" "rootapp" {
   }
   set {
     name  = "ingress.host"
-    value = "${azurerm_public_ip.argocd.ip_address}.nip.io"
+    value = var.dns_name
   }
 
 }

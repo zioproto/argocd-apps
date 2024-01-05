@@ -8,7 +8,7 @@ cp terraform.tfvarsexample terraform.tfvars
 terraform apply -auto-approve -var-file=terraform.tfvars
 ```
 
-The template will install AKS and call the ArgoCD module to install everything that is in this repo under the `/apps` folder. For `cert-manager` to work this repo uses the nip.io DNS service to create a certificate for the ingress controller.
+The template will install AKS and call the ArgoCD module to install everything that is in this repo under the `/apps` folder. For `cert-manager` to work this repo uses the cloudapp.azure.com DNS name to create a certificate for the ingress controller.
 
 Note that I modify the official template to allow insecure connections (SSL is terminated at the ingress controller) and using the latest image.
 

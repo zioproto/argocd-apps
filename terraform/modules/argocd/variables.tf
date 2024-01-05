@@ -23,8 +23,7 @@ variable "bootstrap_repo_branch" {
   default     = ""
 }
 
-
-
-variable "rg" {
-  description = "Resource Group"
-}
+variable "dns_name" {
+  description = "DNS prefix unique name for DNS name <prefix>.<region>.cloudapp.azure.com"
+  nullable = false
+ }
