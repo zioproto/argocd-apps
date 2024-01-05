@@ -59,7 +59,7 @@ resource "helm_release" "argocd" {
 
 resource "helm_release" "rootapp" {
 
-  depends_on = [helm_release.argocd]
+  depends_on = [helm_release.argocd, helm_release.nginx_ingress_controller]
 
 
   name             = "rootapp"
