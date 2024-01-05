@@ -25,7 +25,7 @@ resource "helm_release" "nginx_ingress_controller" {
   }
 
   set {
-    name  = "controller.service.annotations.service.\\beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
+    name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
     value = "/healthz"
   }
 
