@@ -1,7 +1,6 @@
 # Create IP for Ingress
 data "azurerm_resource_group" "argocd" {
   name       = var.rg
-  depends_on = []
 }
 
 resource "azurerm_public_ip" "argocd" {

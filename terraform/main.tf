@@ -51,12 +51,11 @@ module "argocd" {
 
   source = "./modules/argocd"
 
-  depends_on = [ azurerm_resource_group.argocd ]
+  depends_on = [ module.aks.node_resource_group ]
 
   bootstrap_repo_url     = var.bootstrap_repo_url
   bootstrap_repo_path    = var.bootstrap_repo_path
   bootstrap_repo_branch  = var.bootstrap_repo_branch
 
-
-  rg = azurerm_resource_group.argocd.name
+  rg = module.aks.node_resource_group
 }
