@@ -58,5 +58,6 @@ module "argocd" {
   bootstrap_repo_branch  = var.bootstrap_repo_branch
 
   dns_name  = "${var.dns_prefix}.${var.location}.cloudapp.azure.com"
+  dns_prefix = var.dns_prefix
 
 }

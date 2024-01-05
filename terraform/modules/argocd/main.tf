@@ -13,7 +13,7 @@ resource "helm_release" "nginx_ingress_controller" {
 
     set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-dns-label-name"
-    value = "${var.dns_name}"
+    value = "${var.dns_prefix}"
   }
 
   set {

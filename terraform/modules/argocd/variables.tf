@@ -27,3 +27,8 @@ variable "dns_name" {
   description = "DNS prefix unique name for DNS name <prefix>.<region>.cloudapp.azure.com"
   nullable = false
  }
+
+ variable "dns_prefix" {
+  description = "DNS unique name for DNS name <prefix>.<region>.cloudapp.azure.com"
+  nullable = false
+ }
