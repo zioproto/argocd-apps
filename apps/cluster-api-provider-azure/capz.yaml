@@ -12,12 +12,12 @@ spec:
   project: infra
   source:
     chart: cluster-api-operator
-    targetRevision: 0.7.0
+    targetRevision: 0.8.1
     repoURL: https://kubernetes-sigs.github.io/cluster-api-operator
     helm:
       parameters:
         - name: cert-manager.enabled
-          value: 'true'
+          value: 'false'
         - name: addon
           value: 'helm'
         - name: infrastructure
